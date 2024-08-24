@@ -3,6 +3,7 @@ public class Main {
         ChessBoard board = new ChessBoard();
         board.printBoard();
 
+        // Example moves
         board.move("e2", "e4");
         board.printBoard();
 
