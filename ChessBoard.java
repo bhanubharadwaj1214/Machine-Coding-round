@@ -1,38 +1,30 @@
-import java.util.HashMap;
-import java.util.Map;
-
-public class ChessBoard {
-    private Map<String, ChessPiece> board;
-    private String currentPlayer;
-
-    public ChessBoard() {
+import java.util.*;
+public class ChessBoard
+    {
+     Map<String, ChessPiece> board;
+     String currentPlayer;
+    public ChessBoard() 
+        {
         board = new HashMap<>();
-        currentPlayer = "W"; // White starts
+        currentPlayer = "W"; 
         initializeBoard();
     }
 
-    private void initializeBoard() {
-        // Initialize white pieces
+    public void initializeBoard() 
+        {
         board.put("a1", new Rook("W"));
-        board.put("b1", new Knight("W"));
-        board.put("c1", new Bishop("W"));
         board.put("d1", new Queen("W"));
         board.put("e1", new King("W"));
-        board.put("f1", new Bishop("W"));
-        board.put("g1", new Knight("W"));
         board.put("h1", new Rook("W"));
-        for (char c = 'a'; c <= 'h'; c++) {
+        for (char c = 'a'; c <= 'h'; c++) 
+        {
             board.put(c + "2", new Pawn("W"));
         }
 
         // Initialize black pieces
         board.put("a8", new Rook("B"));
-        board.put("b8", new Knight("B"));
-        board.put("c8", new Bishop("B"));
         board.put("d8", new Queen("B"));
         board.put("e8", new King("B"));
-        board.put("f8", new Bishop("B"));
-        board.put("g8", new Knight("B"));
         board.put("h8", new Rook("B"));
         for (char c = 'a'; c <= 'h'; c++) {
             board.put(c + "7", new Pawn("B"));
@@ -48,9 +40,11 @@ public class ChessBoard {
 
     public void printBoard() {
         for (int row = 8; row >= 1; row--) {
-            for (char col = 'a'; col <= 'h'; col++) {
+            for (char col = 'a'; col <= 'h'; col++) 
+            {
                 ChessPiece piece = board.get(col + String.valueOf(row));
-                if (piece == null) {
+                if (piece == null) 
+                {
                     System.out.print("-- ");
                 } else {
                     System.out.print(piece + " ");
@@ -84,22 +78,24 @@ public class ChessBoard {
         return true;
     }
 
-    public boolean isValidPosition(String position) {
-        return position.length() == 2 &&
-               position.charAt(0) >= 'a' && position.charAt(0) <= 'h' &&
-               position.charAt(1) >= '1' && position.charAt(1) <= '8';
-    }
+    public boolean isValidPosition(String position)
+        {
+        return position.length() == 2 && position.charAt(0) >= 'a' && position.charAt(0) <= 'h' && position.charAt(1) >= '1' && position.charAt(1) <= '8';
+        }
 
-    private void movePiece(String start, String end) {
+    public void movePiece(String start, String end)
+    {
         board.put(end, board.get(start));
         board.put(start, null);
     }
 
-    public ChessPiece getPiece(String position) {
+    public ChessPiece getPiece(String position) 
+    {
         return board.get(position);
     }
 
-    public boolean isEmpty(String position) {
+    public boolean isEmpty(String position) 
+        {
         return board.get(position) == null;
     }
 
